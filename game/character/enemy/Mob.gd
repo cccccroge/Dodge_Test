@@ -6,6 +6,7 @@ export (int) var speed_min = 200
 
 # References
 onready var animated_sprite = $AnimatedSprite
+onready var collision_shape = $CollisionShape2D
 
 # Helper variables
 var speed
@@ -18,6 +19,11 @@ func _ready():
 	animated_sprite.play(type[random_type])
 	
 	speed = rand_range(speed_min, speed_min)
+
+
+# Custom functions
+func disable_collision(boolean):
+	collision_shape.disabled = boolean
 
 
 # Slots

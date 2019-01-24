@@ -33,7 +33,7 @@ custom_solver_bias = 0.0
 radius = 36.0475
 height = 28.3649
 
-[node name="Mob" type="RigidBody2D" index="0" groups=[
+[node name="Mob" type="RigidBody2D" groups=[
 "enemy",
 ]]
 

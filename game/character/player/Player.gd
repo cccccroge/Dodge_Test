@@ -10,6 +10,7 @@ signal hit
 onready var viewport_size = get_viewport_rect().size
 onready var animated_sprite = $AnimatedSprite
 onready var collision_shape = $CollisionShape2D
+onready var trail = $Trail
 
 # Helper variables
 enum LAST_PRESSED {R, L, U, D}
@@ -45,15 +46,20 @@ func _process(delta):
 # Custom functions
 func reset():
 	# reset player to center, hide it and disable collision detect
-	self.position = viewport_size / 2
 	hide()
+	set_process(false)
+	self.position = viewport_size / 2
 	collision_shape.disabled = true
+	trail.hide()
 
 
 func start():
 	# show the player, enable collision detect
 	show()
+	set_process(true)
 	collision_shape.disabled = false
+	trail.restart()	# restart to clear remain particles since last hide
+	trail.show()
 
 
 # Helper fuctions

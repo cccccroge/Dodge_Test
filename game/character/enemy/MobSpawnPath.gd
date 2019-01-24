@@ -23,3 +23,7 @@ func spawn_random():
 	mob.position = spawn_pos
 	mob.rotation = spawn_dir
 	mob.set_axis_velocity(Vector2(mob.speed, 0).rotated(mob.rotation))
+
+
+func disable_collision_once():
+	get_tree().call_group("enemy", "disable_collision", true)

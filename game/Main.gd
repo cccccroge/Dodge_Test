@@ -7,6 +7,8 @@ onready var timer_score_increment = $TimerScoreIncrement
 onready var player = $Player
 onready var mob_spawner = $MobSpawnPath
 onready var hud = $HUD
+onready var background_music = $BackgroundMusic
+onready var gameover_sound = $GameoverSound
 
 # Custom variables
 var survive_time
@@ -28,13 +30,17 @@ func game_start():
 	survive_time = 0
 	hud.update_survive_time(survive_time)
 	hud.show_start()
+	background_music.play()
 
 
 func game_over():
 	player.reset()
+	mob_spawner.disable_collision_once()
 	timer_spawn_mob.stop()
 	timer_score_increment.stop()
 	hud.show_end()
+	background_music.stop()
+	gameover_sound.play()
 
 
 # Slots

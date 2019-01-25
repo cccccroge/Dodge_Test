@@ -33,6 +33,17 @@ func game_start():
 	background_music.play()
 
 
+func game_play():
+	timer_spawn_mob.start()
+	timer_score_increment.start()
+	hud.show_play()
+
+
+func add_survive_time():
+	survive_time += 1
+	hud.update_survive_time(survive_time)
+
+
 func game_over():
 	player.reset()
 	mob_spawner.disable_collision_once()
@@ -49,14 +60,11 @@ func _on_Player_hit():
 
 
 func _on_TimerStartFreeze_timeout():
-	timer_spawn_mob.start()
-	timer_score_increment.start()
-	hud.show_play()
+	game_play()
 
 
 func _on_TimerScoreIncrement_timeout():
-	survive_time += 1
-	hud.update_survive_time(survive_time)
+	add_survive_time()
 
 
 func _on_TimerSpawnMob_timeout():
